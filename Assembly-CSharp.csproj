@@ -36,9 +36,11 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\MonWalker.cs" />
-     <Compile Include="Assets\Scripts\WalkerPool.cs" />
      <Compile Include="Assets\Scripts\TestSpawn.cs" />
+     <Compile Include="Assets\Scripts\WalkerPool.cs" />
+     <Compile Include="Assets\Scripts\MonWalker.cs" />
+     <Compile Include="Assets\Scripts\WalkerSenser.cs" />
+     <Compile Include="Assets\Scripts\TestAlly.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

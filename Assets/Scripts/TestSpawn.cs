@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TestSpawn : MonoBehaviour
 {
+    public GameObject Arrival;
     public static TestSpawn instance {
         get
         {
@@ -25,7 +26,7 @@ public class TestSpawn : MonoBehaviour
            SummonPoint = new Vector3(0,0,Random.Range(-5,5));
            mon.transform.position=SummonPoint;
            mon.SetSpec(100,1);
-           mon.SetArrival(new Vector3(10,0,0));
+           mon.SetArrival(Arrival.transform.position);
            count--;
         }
     }
