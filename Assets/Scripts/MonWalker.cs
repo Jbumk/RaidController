@@ -60,8 +60,9 @@ public class MonWalker : MonoBehaviour
         //해당 적의 위치를 받아와
         //Direc =(MonPrefab.transform.position-point).normalized;        
         //해당 적을 바라본채로 사거리 까지 다가가고
-        PlayerPoint = point;        
-        isFind=true;        
+        isFind=true; 
+        PlayerPoint = point;       
+               
         // 그후 정지하고 공격한다
     }
 
@@ -69,6 +70,10 @@ public class MonWalker : MonoBehaviour
         MonPrefab.transform.LookAt(ArrivalPoint);
         isFind=false;
         isFight=false;
+    }
+
+    public bool FindChk(){
+        return isFind;
     }
 
 

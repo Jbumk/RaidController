@@ -29,20 +29,16 @@ public class WalkerPool : MonoBehaviour
     }
 
     public MonWalker SummonWalker(){
-        if(MonWalkerPool.Count>0){
-            Debug.Log("몬스터를 소환");
+        if(MonWalkerPool.Count>0){           
             var mon = MonWalkerPool.Dequeue();
             mon.transform.SetParent(null);
-            mon.gameObject.SetActive(true);
-            
+            mon.gameObject.SetActive(true);            
 
             return mon;
-        }else{
-            Debug.Log("몬스터를 추가로 만들어 소환");
+        }else{            
             var newMon = CreateNewMon();
             newMon.transform.SetParent(null);
-            newMon.gameObject.SetActive(true);
-            
+            newMon.gameObject.SetActive(true);            
 
             return newMon;
         }
