@@ -38,14 +38,16 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\TestAlly.cs" />
      <Compile Include="Assets\Scripts\WalkerSenser.cs" />
+     <Compile Include="Assets\Scripts\Tower.cs" />
+     <Compile Include="Assets\Scripts\Manager\UIManager.cs" />
      <Compile Include="Assets\Scripts\TestSpawn.cs" />
+     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\Shop.cs" />
+     <Compile Include="Assets\Scripts\AllyPool.cs" />
      <Compile Include="Assets\Scripts\WalkerPool.cs" />
      <Compile Include="Assets\Scripts\MonWalker.cs" />
-     <Compile Include="Assets\Scripts\AllyPool.cs" />
-     <Compile Include="Assets\Scripts\Manager\Shop.cs" />
-     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Manager\UIManager.cs" />
-     <Compile Include="Assets\Scripts\Shop.cs" />
+     <Compile Include="Assets\Scripts\TowerAttackPool.cs" />
+     <Compile Include="Assets\Scripts\Bullet.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
