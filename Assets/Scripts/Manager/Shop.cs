@@ -36,6 +36,18 @@ public class Shop : MonoBehaviour
     //수급 시간 단축 가격
     private int IntervalPrice=10;
 
+    //타워
+    public GameObject[] LTower;
+    public GameObject[] RTower;
+
+    //타워수
+    private int LTowerCount=0;
+    private int RTowerCount=0;
+
+    private int LTowerPrice=10;
+    private int RTowerPrice=10;
+
+
 
 
     private void Update() {
@@ -48,6 +60,25 @@ public class Shop : MonoBehaviour
     }
 
     //수비지역 아군 생성 1
+    //=> 타워 설치로 변경
+    public void CreateLTower(){
+        if(LTowerPrice>=Money){
+            LTower[LTowerCount].SetActive(true);
+            LTowerCount++;
+            Money -=LTowerPrice;
+            //LTower 건설값 증가 추가해야함
+        }
+    }
+    
+    public void CreateRTower(){
+        if(RTowerPrice>=Money){
+            RTower[RTowerCount].SetActive(true);
+            RTowerCount++;
+            Money -=RTowerPrice;
+            //RTower 건설값 증가 추가해야함
+        }
+    }
+
     public void SummonAlly1(){
         //재화 체크, 소모
 

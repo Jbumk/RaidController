@@ -128,6 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonPrefab: {fileID: 521670403552511476}
   DietectArea: {fileID: 521670404028238228}
+  isFight: 0
+  isFind: 0
 --- !u!1 &521670404028238228
 GameObject:
   m_ObjectHideFlags: 0

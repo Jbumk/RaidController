@@ -4280,7 +4280,7 @@ Transform:
   m_GameObject: {fileID: 708893188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 3.3333333}
+  m_LocalScale: {x: 30, y: 30, z: 10}
   m_Children: []
   m_Father: {fileID: 1563839280}
   m_RootOrder: 0
@@ -10371,7 +10371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563839276}
   m_LocalRotation: {x: -0, y: -0.9934058, z: -0, w: 0.11465115}
-  m_LocalPosition: {x: 10.72, y: 2, z: 0}
+  m_LocalPosition: {x: 24.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children:
   - {fileID: 708893189}
@@ -11859,6 +11859,7 @@ GameObject:
   - component: {fileID: 1839042031}
   - component: {fileID: 1839042035}
   - component: {fileID: 1839042034}
+  - component: {fileID: 1839042036}
   m_Layer: 0
   m_Name: ObjPool
   m_TagString: Untagged
@@ -11933,6 +11934,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllyPrefab: {fileID: 4507260120066827756, guid: 5e390a54ea8d81e4c8e5fa6d58090ed0, type: 3}
+--- !u!114 &1839042036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839042030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc233ec1a973d347889ebdfadb508f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackObj: {fileID: 1677263976192805373, guid: fd5ccb1244a32924da3cbcf40a48b081, type: 3}
+  count: 30
 --- !u!1 &1847104187
 GameObject:
   m_ObjectHideFlags: 0

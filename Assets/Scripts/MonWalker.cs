@@ -85,7 +85,7 @@ public class MonWalker : MonoBehaviour
         if(col.gameObject.CompareTag("Ally")){
             Debug.Log("적과 충돌");           
             isFight=true;
-        }    
+        }          
     }
 
 
@@ -95,6 +95,11 @@ public class MonWalker : MonoBehaviour
             LookForward();            
         }
         
+    }
+
+    public void HitDamage(double dmg){
+        Health -= dmg;
+        Debug.Log("맞았음");
     }
     
 
