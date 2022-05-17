@@ -53,4 +53,10 @@ public class Tower : MonoBehaviour
            TargetObj=col.gameObject;
        }
    }
+
+   //버튼으로 업그레이드
+   public void UpGradeSpeed(){
+       AttackCoolTime-=0.1;       
+
+   }
 }

@@ -46,9 +46,9 @@ public class TowerAttackPool : MonoBehaviour
         }
     }
 
-    public void ReturnObj(Bullet obj){
+    public void ReturnObj(Bullet obj){        
         obj.transform.SetParent(instance.transform);
-        obj.gameObject.SetActive(false);
+        obj.gameObject.SetActive(false);        
         BulletQueue.Enqueue(obj);
 
     }
