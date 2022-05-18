@@ -82,7 +82,7 @@ public class Attacker : MonoBehaviour
 
 
 
-
+    /*
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.CompareTag("Enemy")){                       
             isFight=true;       
@@ -100,7 +100,7 @@ public class Attacker : MonoBehaviour
             }            
         }       
     }
-
+    */
     private void OnCollisionEnter(Collision col) {
         if(col.gameObject.CompareTag("Enemy")){                       
             isFight=true;
@@ -112,6 +112,7 @@ public class Attacker : MonoBehaviour
     private void OnCollisionStay(Collision col) {
         if(col.gameObject.CompareTag("Enemy")){            
             HitTimer+=Time.deltaTime;
+            Debug.Log("충돌중");
             if(HitTimer>=HitDelay){
                 Debug.Log("추가 피해");
                 HitDamage(5);

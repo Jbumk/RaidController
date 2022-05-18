@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
     //이후 타겟에 적중하면 리턴
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject==Target){
-            TargetHit.HitDamage(Damage);
+            TargetHit.HitDamage(Damage,this.gameObject);
             TowerAttackPool.instance.ReturnObj(this);
         }
     }

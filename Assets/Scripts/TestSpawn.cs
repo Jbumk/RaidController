@@ -18,7 +18,7 @@ public class TestSpawn : MonoBehaviour
 
     private static TestSpawn m_inst;
 
-    private int count = 5;
+    private int count = 1;
     private Vector3 SummonPoint;
     private void Update() {
         if(count>0){
