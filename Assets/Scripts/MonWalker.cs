@@ -23,17 +23,13 @@ public class MonWalker : MonoBehaviour
         rigid = MonPrefab.GetComponent<Rigidbody>();
     }
     void FixedUpdate()
-    {                
-       
+    {  
         if(Health>0){
             if(isFind){
                 MonPrefab.transform.LookAt(PlayerPoint);
             }                
             MonPrefab.transform.Translate(Vector3.forward* MoveSpeed * Time.deltaTime);
-        }
-            
-        
-       
+        }      
 
           if(Health<=0){
             //풀링 반환 + Health 초기화 + Speed 초기화
@@ -80,6 +76,10 @@ public class MonWalker : MonoBehaviour
             WalkerPool.instance.ReturnMon(this);
         }
 
+     if(col.gameObject.CompareTag("Bullet")){
+             Debug.Log("총맞음");
+            HitDamage(5,col.gameObject);
+        } 
         /*if(col.gameObject.CompareTag("Ally")){
             Debug.Log("적과 충돌");           
             isFight=true;
@@ -100,8 +100,12 @@ public class MonWalker : MonoBehaviour
             Debug.Log("적과 충돌");
             HitDamage(5,col.gameObject);           
             //isFight=true;
-        } 
+        }
+
+       
     }
+    
+   
     
     private void OnCollisionStay(Collision col) {
         if(!col.gameObject.CompareTag("Ally") && Vector3.Distance(this.transform.position,PlayerPoint)<=0.1){
@@ -112,7 +116,7 @@ public class MonWalker : MonoBehaviour
 
     public void HitDamage(double dmg,GameObject obj){
         Health -= dmg;
-        rigid.AddForce(obj.transform.position*-1*0.3f,ForceMode.Impulse);
+        rigid.AddForce((this.transform.position-obj.transform.position).normalized*3f,ForceMode.Impulse);        
         Debug.Log("맞았음");
     }
     

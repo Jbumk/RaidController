@@ -112,7 +112,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &521670403552511474
 MonoBehaviour:
@@ -128,7 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonPrefab: {fileID: 521670403552511476}
   DietectArea: {fileID: 521670404028238228}
-  isFight: 0
   isFind: 0
 --- !u!1 &521670404028238228
 GameObject:

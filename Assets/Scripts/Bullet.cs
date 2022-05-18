@@ -22,13 +22,13 @@ public class Bullet : MonoBehaviour
 
     //스폰시 직진
     private void Update(){
-        transform.Translate(Direction*Time.deltaTime*10f);
+        transform.Translate(Direction*Time.deltaTime*5.5f);
     }
 
     //이후 타겟에 적중하면 리턴
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject==Target){
-            TargetHit.HitDamage(Damage,this.gameObject);
+            //TargetHit.HitDamage(Damage,this.gameObject);
             TowerAttackPool.instance.ReturnObj(this);
         }
     }
