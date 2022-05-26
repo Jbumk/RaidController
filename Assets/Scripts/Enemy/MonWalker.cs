@@ -76,12 +76,7 @@ public class MonWalker : MonoBehaviour
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.CompareTag("Arrival")){
             WalkerPool.instance.ReturnMon(this);
-        }
-
-           if(col.gameObject.CompareTag("Bullet")){           
-            HitDamage(5,true);
-            Debug.Log("총맞음");
-        }         
+        }          
     }
 
     /*

@@ -8,16 +8,18 @@ public class Bullet : MonoBehaviour
     private MonWalker TargetHit;
     private Rigidbody rigid;
     private Vector3 Direction;
-    private double Damage=1.0;
+    private double Damage;
+    
 
 
     private void Awake(){
         rigid = this.GetComponent<Rigidbody>();
     }
 
-    public void Shoot(Vector3 direc, GameObject obj){
+    public void Shoot(Vector3 direc, GameObject obj,double DMG){
         Direction = direc;
         Target = obj;
+        Damage= DMG;
         TargetHit = Target.GetComponent<MonWalker>();        
     }
 
@@ -28,8 +30,8 @@ public class Bullet : MonoBehaviour
 
     //이후 타겟에 적중하면 리턴
     private void OnTriggerEnter(Collider col) {
-        if(col.gameObject==Target){        
-          
+        if(col.gameObject==Target){
+            TargetHit.HitDamage(Damage,true);         
             TowerAttackPool.instance.ReturnObj(this);
         }
     }

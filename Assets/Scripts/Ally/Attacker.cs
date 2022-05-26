@@ -22,8 +22,14 @@ public class Attacker : MonoBehaviour
     private bool Alive = false;
     
     [Header("Spec")]
+    public double MaxHealth=100;
     public double Health=100;
     private float MoveSpeed=1f;
+
+    //버프
+    private bool HealBuff=false;
+    private double HealBuffTime=30.0;
+    private float HealBuffCount=0;
     
     private void Awake() {
         rigid = this.GetComponent<Rigidbody>();
@@ -46,6 +52,12 @@ public class Attacker : MonoBehaviour
                 AttackerPrefab.transform.LookAt(PlayerPoint);
             }                
             AttackerPrefab.transform.Translate(Vector3.forward* MoveSpeed * Time.deltaTime);
+            if(HealBuff){
+                HealBuffCount+=Time.deltaTime;
+                if(HealBuffCount%1==0){
+                    Health += MaxHealth*0.02;
+                }
+            }
         }  
     }
 
@@ -95,6 +107,13 @@ public class Attacker : MonoBehaviour
         rigid.AddForce((this.transform.position-obj.transform.position).normalized *3f,ForceMode.Impulse);
        
             
+    }
+
+    //버프
+
+    public void BuffHeal(){
+        HealBuffCount=0;
+        HealBuff=true;        
     }
 
 }
