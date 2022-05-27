@@ -13,13 +13,8 @@ public class Attacker : MonoBehaviour
     public bool isFind=false;
     private Vector3 Direc;
     private Vector3 PlayerPoint;
-    
 
-    private float HitTimer=0;
-    private double HitDelay =0.5;
-
-    private GameObject Target;
-    private bool Alive = false;
+    private GameObject Target;    
     
     [Header("Spec")]
     public double MaxHealth=100;
@@ -39,6 +34,7 @@ public class Attacker : MonoBehaviour
         if(Health<=0){
             //풀링 반환 + Health 초기화 + Speed 초기화
             AttackerPool.instance.ReturnAttacker(this);
+            MaxHealth=0;
             Health=0;
             MoveSpeed=0;
             ArrivalPoint = Vector3.zero;            
@@ -52,6 +48,7 @@ public class Attacker : MonoBehaviour
                 AttackerPrefab.transform.LookAt(PlayerPoint);
             }                
             AttackerPrefab.transform.Translate(Vector3.forward* MoveSpeed * Time.deltaTime);
+            //테스트 해봐야함
             if(HealBuff){
                 HealBuffCount+=Time.deltaTime;
                 if(HealBuffCount%1==0){
@@ -62,6 +59,7 @@ public class Attacker : MonoBehaviour
     }
 
     public void SetSpec(double HP, float Speed){
+        MaxHealth = HP;
         Health = HP;
         MoveSpeed = Speed;
     }
@@ -82,9 +80,9 @@ public class Attacker : MonoBehaviour
 
     public void LookForward(){        
         AttackerPrefab.transform.LookAt(ArrivalPoint);
-        isFind=false;     
+        isFind=false;        
     }
-
+   
     public bool FindChk(){
         return isFind;
     }
@@ -99,6 +97,12 @@ public class Attacker : MonoBehaviour
         if(col.gameObject.CompareTag("Enemy")){
            HitDamage(5,col.gameObject);
         }  
+    }
+
+    private void OnCollisionStay(Collision col) {
+        if(!col.gameObject.CompareTag("Enemy") && Vector3.Distance(this.transform.position,PlayerPoint)<=0.1){
+            LookForward();            
+        }
     }
 
 

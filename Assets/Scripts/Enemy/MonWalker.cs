@@ -77,16 +77,7 @@ public class MonWalker : MonoBehaviour
         if(col.gameObject.CompareTag("Arrival")){
             WalkerPool.instance.ReturnMon(this);
         }          
-    }
-
-    /*
-    private void OnTriggerStay(Collider col) {
-        if(!col.gameObject.CompareTag("Ally") && Vector3.Distance(this.transform.position,PlayerPoint)<=0.1
-            ||!col.gameObject.CompareTag("Ally") && isFight){
-            LookForward();            
-        }
-        
-    }*/
+    }  
 
     private void OnCollisionEnter(Collision col) {
          if(col.gameObject.CompareTag("Ally")){
@@ -99,8 +90,7 @@ public class MonWalker : MonoBehaviour
             CollideTarget =col.gameObject;         
             HitDamage(0,false);            
         }         
-    }
-    
+    }  
     
     
    
@@ -115,7 +105,7 @@ public class MonWalker : MonoBehaviour
     public void HitDamage(double dmg,bool isBullet){
         Health -= dmg;
         if(!isBullet){
-            rigid.AddForce((this.transform.position-CollideTarget.transform.position).normalized*6f,ForceMode.Impulse);                     
+            rigid.AddForce((this.transform.position-CollideTarget.transform.position).normalized*4f,ForceMode.Impulse);                     
         }
         //약간 빨개지는 이펙트 추가
         

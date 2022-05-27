@@ -49,9 +49,13 @@
      <Compile Include="Assets\Scripts\AllyPool.cs" />
      <Compile Include="Assets\Scripts\WalkerPool.cs" />
      <Compile Include="Assets\Scripts\AttackerPool.cs" />
+     <Compile Include="Assets\Scripts\Object\Door.cs" />
      <Compile Include="Assets\Scripts\Enemy\MonWalker.cs" />
      <Compile Include="Assets\Scripts\Object\Bullet.cs" />
-     <Compile Include="Assets\Scripts\Object\Door.cs" />
+     <Compile Include="Assets\Scripts\Ally\Archer.cs" />
+     <Compile Include="Assets\Scripts\ArcherPool.cs" />
+     <Compile Include="Assets\Scripts\ArcherAttackPool.cs" />
+     <Compile Include="Assets\Scripts\Object\Arrow.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
