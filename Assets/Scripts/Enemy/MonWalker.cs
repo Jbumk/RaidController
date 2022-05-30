@@ -15,10 +15,14 @@ public class MonWalker : MonoBehaviour
     private Vector3 PlayerPoint;
 
     private GameObject CollideTarget;
+
+    private float SlowTimer=0;
+    private double SlowEndTime=1.5;
+    private bool isSlow=false;
     
     [Header("Spec")]
     private double Health;
-    private float MoveSpeed;
+    private float MoveSpeed;   
 
     
     private void Awake() {
@@ -27,10 +31,23 @@ public class MonWalker : MonoBehaviour
     void FixedUpdate()
     {  
         if(Health>0){
+            // 적 감지했을 때
             if(isFind){
                 MonPrefab.transform.LookAt(PlayerPoint);
             }                
-            MonPrefab.transform.Translate(Vector3.forward* MoveSpeed * Time.deltaTime);
+           
+
+            // 맞아서 슬로우 상태일때
+            if(isSlow){             
+                MonPrefab.transform.Translate(Vector3.forward* MoveSpeed*0.3f * Time.deltaTime);
+                SlowTimer+=Time.deltaTime;
+                if(SlowTimer>=SlowEndTime){
+                    isSlow=false;                          
+                }
+            }
+            else{
+             MonPrefab.transform.Translate(Vector3.forward* MoveSpeed * Time.deltaTime);
+            }
         }      
 
           if(Health<=0){
@@ -104,12 +121,14 @@ public class MonWalker : MonoBehaviour
 
     public void HitDamage(double dmg,bool isBullet){
         Health -= dmg;
+        SlowTimer=0;
+        isSlow=true;          
         if(!isBullet){
             rigid.AddForce((this.transform.position-CollideTarget.transform.position).normalized*4f,ForceMode.Impulse);                     
         }
         //약간 빨개지는 이펙트 추가
         
-        Debug.Log("맞았음");
+       
     }
     
 

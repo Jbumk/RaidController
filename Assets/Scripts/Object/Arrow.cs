@@ -11,7 +11,7 @@ public class Arrow : MonoBehaviour
     
     void Update()
     {
-        transform.Translate(Vector3.forward*4f*Time.deltaTime);
+        transform.Translate(Vector3.forward*5f*Time.deltaTime);
     }
 
     public void SetArrival(Vector3 point, GameObject Target,double DMG){
