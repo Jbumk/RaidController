@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    //데미지
+    private double collisionDamage=5.0;
+    private double MagicDamage=3.0;
+    private double ArrowDamage=10.0;
+    private double BulletDamage=5.0;
+
+
+    //업그레이드
+
+
+    //리턴
+    public double ChkColDMG(){
+        return collisionDamage;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public double ChkMagicDMG(){
+        return MagicDamage;
     }
+
+    public double ChkArrowDMG(){
+        return ArrowDamage;
+    }
+
+    public double ChkBulletDMG(){
+        return BulletDamage;
+    }
+    
+
+    
 }

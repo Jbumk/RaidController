@@ -5,14 +5,14 @@ using UnityEngine;
 public class ArcherPool : MonoBehaviour
 {
   public static ArcherPool instance;
-
   public GameObject ArcherPrefab;
+  public GameObject Manager;
 
   Queue<Archer> ArcherQueue = new Queue<Archer>();
 
   private void Awake(){
       instance = this;
-      initialize(30);
+      initialize(8);
   }
 
   private void initialize(int count){
@@ -23,6 +23,7 @@ public class ArcherPool : MonoBehaviour
 
   private Archer CreateArcher(){
       var newObj = Instantiate(ArcherPrefab).GetComponent<Archer>();
+      newObj.SetManager(Manager);
       newObj.transform.SetParent(transform);
       newObj.gameObject.SetActive(false);
 

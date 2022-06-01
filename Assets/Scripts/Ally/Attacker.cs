@@ -14,7 +14,9 @@ public class Attacker : MonoBehaviour
     private Vector3 Direc;
     private Vector3 PlayerPoint;
 
-    private GameObject Target;    
+    private GameObject Target;
+
+    private GameManager GameManager;    
     
     [Header("Spec")]
     public double MaxHealth=100;
@@ -58,6 +60,8 @@ public class Attacker : MonoBehaviour
         }  
     }
 
+    //설정 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
     public void SetSpec(double HP, float Speed){
         MaxHealth = HP;
         Health = HP;
@@ -86,6 +90,12 @@ public class Attacker : MonoBehaviour
     public bool FindChk(){
         return isFind;
     }
+    
+    public void SetManager(GameObject obj){
+        GameManager = obj.GetComponent<GameManager>();
+    }
+
+    //충돌 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.CompareTag("Enemy")){
@@ -108,9 +118,7 @@ public class Attacker : MonoBehaviour
 
     public void HitDamage(double dmg,GameObject obj){
         Health -= dmg;
-        rigid.AddForce((this.transform.position-obj.transform.position).normalized *3f,ForceMode.Impulse);
-       
-            
+        rigid.AddForce((this.transform.position-obj.transform.position).normalized *3f,ForceMode.Impulse);        
     }
 
     //버프

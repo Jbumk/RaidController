@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Bullet
   - Door
+  - Magic
   layers:
   - Default
   - TransparentFX

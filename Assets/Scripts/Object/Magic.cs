@@ -14,18 +14,17 @@ public class Magic : MonoBehaviour
         transform.Translate(Vector3.forward*5f*Time.deltaTime);
     }
 
-    public void SetArrival(Vector3 point, GameObject Target,double DMG){
+    public void SetArrival(GameObject Target,double DMG,Vector3 Size){
         this.Target = Target;
-        Arrival = point;
+        Arrival = Target.transform.position;
         Damage = DMG;
         TargetHit=Target.GetComponent<MonWalker>();
         transform.LookAt(Arrival);
+        this.transform.localScale = Size;   
     }
+  
 
-    private void OnTriggerEnter(Collider col) {
-        if(col.gameObject==Target){
-            TargetHit.HitDamage(Damage,true);
-            WizardMagicPool.instance.ReturnMagic(this);            
-        }
+    public double ReturnDamage(){
+        return Damage;
     }
 }

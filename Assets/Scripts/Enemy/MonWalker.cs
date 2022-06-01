@@ -18,7 +18,9 @@ public class MonWalker : MonoBehaviour
 
     private float SlowTimer=0;
     private double SlowEndTime=1.5;
-    private bool isSlow=false;
+    private bool isSlow=false;  
+
+    private GameManager GameManager;
     
     [Header("Spec")]
     private double Health;
@@ -59,6 +61,8 @@ public class MonWalker : MonoBehaviour
         } 
        
     }
+    
+    //설정 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     public void SetSpec(double HP, float Speed){
         Health = HP;
@@ -89,11 +93,26 @@ public class MonWalker : MonoBehaviour
         return isFind;
     }
 
+    public void SetManager(GameObject obj){
+        GameManager = obj.GetComponent<GameManager>();
+    }
+
+
+    //충돌 관련 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
 
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.CompareTag("Arrival")){
             WalkerPool.instance.ReturnMon(this);
-        }          
+        }
+
+          
+    }
+
+    private void OnTriggerStay(Collider col) {
+        if(col.gameObject.CompareTag("Magic")){
+            
+        }
     }  
 
     private void OnCollisionEnter(Collision col) {
@@ -107,8 +126,7 @@ public class MonWalker : MonoBehaviour
             CollideTarget =col.gameObject;         
             HitDamage(0,false);            
         }         
-    }  
-    
+    }     
     
    
     

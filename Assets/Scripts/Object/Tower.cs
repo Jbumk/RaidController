@@ -8,10 +8,11 @@ public class Tower : MonoBehaviour
    public GameObject TowerPrefab; //타워 본체
    private Vector3 Direction;
    private Quaternion Direc;
-   
+   public GameManager GameManager;
+
    private double AttackCoolTime = 2.0;
    private float AttackTimer = 0;
-   private double Damage = 5.0;
+
 
    //buff
    private bool DMGBuff =false;
@@ -45,9 +46,9 @@ public class Tower : MonoBehaviour
                 var Bullet = TowerAttackPool.instance.GetObj();
                 Bullet.transform.position = transform.position;
                 if(DMGBuff){
-                    Bullet.Shoot(Direction,TargetObj,Damage*1.3);
+                    Bullet.Shoot(Direction,TargetObj,GameManager.ChkBulletDMG()*1.3);
                 }else{
-                    Bullet.Shoot(Direction,TargetObj,Damage);   
+                    Bullet.Shoot(Direction,TargetObj,GameManager.ChkBulletDMG());   
                 }
                 
                 AttackTimer=0;

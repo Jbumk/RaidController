@@ -23,7 +23,7 @@ public class WizardMagicPool : MonoBehaviour
 
     private Magic CreateNewMagic(){
         var obj = Instantiate(MagicPrefab).GetComponent<Magic>();
-        obj.transform.SetParent(null);
+        obj.transform.SetParent(transform);
         obj.gameObject.SetActive(false);
 
         return obj;

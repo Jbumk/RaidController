@@ -14,11 +14,15 @@ public class Archer : MonoBehaviour
     private Vector3 Direc;
     private Vector3 PlayerPoint;
 
+    //목표
     private GameObject Target; 
-
-    private float AttackTimer=0;
-    private double AttackCoolTime=2.0;   
     
+    //공격 딜레이
+    private float AttackTimer=0;
+    private double AttackCoolTime=2.0;
+    
+    private GameManager GameManager;    
+
     [Header("Spec")]
     public double MaxHealth=100;
     public double Health=100;
@@ -27,10 +31,10 @@ public class Archer : MonoBehaviour
     //버프
     private bool HealBuff=false;
     private double HealBuffTime=30.0;
-    private float HealBuffCount=0;
+    private float HealBuffCount=0;    
     
     private void Awake() {
-        rigid = this.GetComponent<Rigidbody>();
+        rigid = this.GetComponent<Rigidbody>();       
     }
 
     private void Update() {
@@ -55,7 +59,7 @@ public class Archer : MonoBehaviour
                 if(AttackTimer>=AttackCoolTime){
                     var Attack = ArcherAttackPool.instance.GetArrow();
                     Attack.transform.position=transform.position;
-                    Attack.SetArrival(Target.transform.position,Target,2.0);
+                    Attack.SetArrival(Target,GameManager.ChkArrowDMG());
                     AttackTimer=0;   
                 }             
                 
@@ -72,6 +76,8 @@ public class Archer : MonoBehaviour
             }
         }  
     }
+
+    //설정 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     public void SetSpec(double HP, float Speed){
         MaxHealth = HP;
@@ -99,6 +105,11 @@ public class Archer : MonoBehaviour
    
     public bool FindChk(){
         return isFind;
+    }
+
+    public void SetManager(GameObject obj){
+        GameManager= obj.GetComponent<GameManager>();
+        
     }
 
 
@@ -135,8 +146,7 @@ public class Archer : MonoBehaviour
 
     public void HitDamage(double dmg,GameObject obj){
         Health -= dmg;
-        rigid.AddForce((this.transform.position-obj.transform.position).normalized *3f,ForceMode.Impulse);
-       
+        rigid.AddForce((this.transform.position-obj.transform.position).normalized *3f,ForceMode.Impulse);       
             
     }
 

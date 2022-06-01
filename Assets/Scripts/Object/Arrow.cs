@@ -14,9 +14,9 @@ public class Arrow : MonoBehaviour
         transform.Translate(Vector3.forward*5f*Time.deltaTime);
     }
 
-    public void SetArrival(Vector3 point, GameObject Target,double DMG){
+    public void SetArrival(GameObject Target,double DMG){
         this.Target = Target;
-        Arrival = point;
+        Arrival = Target.transform.position;
         Damage = DMG;
         TargetHit=Target.GetComponent<MonWalker>();
         transform.LookAt(Arrival);

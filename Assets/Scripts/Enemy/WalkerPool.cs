@@ -6,6 +6,7 @@ public class WalkerPool : MonoBehaviour
 {
     public static WalkerPool instance;
     public GameObject WalkerPrefabs;
+    public GameObject Manager;
     private int count = 30;
 
     Queue<MonWalker> MonWalkerPool = new Queue<MonWalker>();
@@ -23,6 +24,7 @@ public class WalkerPool : MonoBehaviour
 
     private MonWalker CreateNewMon(){
         var newMon = Instantiate(WalkerPrefabs).GetComponent<MonWalker>();
+        newMon.SetManager(Manager);
         newMon.transform.SetParent(transform);
         newMon.gameObject.SetActive(false);
         return newMon;
