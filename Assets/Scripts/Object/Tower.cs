@@ -23,6 +23,8 @@ public class Tower : MonoBehaviour
    private double OriginAttackCoolTime=0;
    private double SpeedBuffTime = 30.0;
    private float SPeedBuffCount = 0;
+
+   
    
 
    private void Update() {

@@ -9,8 +9,7 @@ public class Archer : MonoBehaviour
     public GameObject DietectArea;
     private Rigidbody rigid;
  
-    private Vector3 ArrivalPoint;
-    public bool isFind=false;
+    private GameObject ArrivalPoint;
     private Vector3 Direc;
     private Vector3 PlayerPoint;
 
@@ -44,14 +43,14 @@ public class Archer : MonoBehaviour
             MaxHealth=0;
             Health=0;
             MoveSpeed=0;
-            ArrivalPoint = Vector3.zero;            
+            ArrivalPoint = null;            
         }    
     }
     
     void FixedUpdate()
     {    
         if(Health>0){
-            if(isFind){
+            if(Target!=null){
                 AttackTimer+=Time.deltaTime;
                 ArcherPrefab.transform.LookAt(Target.transform.position);
                                 
@@ -61,12 +60,18 @@ public class Archer : MonoBehaviour
                     Attack.transform.position=transform.position;
                     Attack.SetArrival(Target,GameManager.ChkArrowDMG());
                     AttackTimer=0;   
-                }             
+                } 
+                 if(Vector3.Distance(this.transform.position,Target.transform.position)>=16){
+                    Target=null;
+                }            
                 
             }
-            else{                
+            else{
+                ArcherPrefab.transform.LookAt(ArrivalPoint.transform.position);              
                 ArcherPrefab.transform.Translate(Vector3.forward* MoveSpeed * Time.deltaTime);
             }
+
+           
             //테스트 해봐야함
             if(HealBuff){
                 HealBuffCount+=Time.deltaTime;
@@ -84,28 +89,23 @@ public class Archer : MonoBehaviour
         Health = HP;
         MoveSpeed = Speed;
     }
-    public void SetArrival(Vector3 Point){
-        ArrivalPoint = Point;
-        ArcherPrefab.transform.LookAt(Point);
+    public void SetArrival(){        
+        ArrivalPoint = GameManager.ChkArrival();
+        ArcherPrefab.transform.LookAt(ArrivalPoint.transform.position);
     }
 
-    public void DetectEnemy(Vector3 point){
-        //거리 안에 적이 발견됐을때
-        //해당 적의 위치를 받아와     
-        //해당 적을 바라본채로 사거리 까지 다가가고
-        isFind=true; 
+    /*
+    public void DetectEnemy(Vector3 point){       
         PlayerPoint = point;             
        
     }
+    */
 
     public void LookForward(){        
-        ArcherPrefab.transform.LookAt(ArrivalPoint);
-        isFind=false;        
-    }
-   
-    public bool FindChk(){
-        return isFind;
-    }
+        ArcherPrefab.transform.LookAt(ArrivalPoint.transform.position);
+       
+    }   
+ 
 
     public void SetManager(GameObject obj){
         GameManager= obj.GetComponent<GameManager>();
@@ -116,16 +116,15 @@ public class Archer : MonoBehaviour
     //충돌 관련ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.CompareTag("Enemy")){
-            Target = col.gameObject;
-            //DetectEnemy(col.transform.position);
-            isFind=true;
+            Target = col.gameObject;          
+         
             PlayerPoint=Target.transform.position;            
         }
     }
 
     private void OnTriggerExit(Collider col) {
         if(col.gameObject==Target){
-            isFind=false;
+         
             Target=null;
             PlayerPoint=Vector3.zero;
         }

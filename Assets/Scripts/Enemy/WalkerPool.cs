@@ -26,7 +26,8 @@ public class WalkerPool : MonoBehaviour
         var newMon = Instantiate(WalkerPrefabs).GetComponent<MonWalker>();
         newMon.SetManager(Manager);
         newMon.transform.SetParent(transform);
-        newMon.gameObject.SetActive(false);
+        newMon.gameObject.SetActive(false);       
+
         return newMon;
     }
 

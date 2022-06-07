@@ -20,6 +20,10 @@ public class MonWalker : MonoBehaviour
     private double SlowEndTime=1.5;
     private bool isSlow=false;  
 
+    private float HitTimer=0.5f;
+    private double HitIgnoreTime=0.5;
+    
+
     private GameManager GameManager;
     
     [Header("Spec")]
@@ -111,7 +115,12 @@ public class MonWalker : MonoBehaviour
 
     private void OnTriggerStay(Collider col) {
         if(col.gameObject.CompareTag("Magic")){
-            
+            HitTimer+=Time.deltaTime;
+            if(HitTimer>=HitIgnoreTime){
+                HitDamage(GameManager.ChkMagicDMG(),true);
+                Debug.Log("데미지s 들어감");                 
+                HitTimer=0;
+            }
         }
     }  
 

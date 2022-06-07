@@ -14,6 +14,12 @@ public class GameManager : MonoBehaviour
     //업그레이드
 
 
+
+    //목적지
+    public GameObject Line2Arrival;
+    
+
+
     //리턴
     public double ChkColDMG(){
         return collisionDamage;
@@ -32,5 +38,8 @@ public class GameManager : MonoBehaviour
     }
     
 
+    public GameObject ChkArrival(){
+        return Line2Arrival;
+    }
     
 }

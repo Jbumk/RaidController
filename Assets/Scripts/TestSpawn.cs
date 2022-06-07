@@ -27,6 +27,7 @@ public class TestSpawn : MonoBehaviour
            mon.transform.position=SummonPoint;
            mon.SetSpec(100,1);
            mon.SetArrival(Arrival.transform.position);
+          
            count--;
         }
     }

@@ -34,17 +34,7 @@ public class Bullet : MonoBehaviour
             TargetHit.HitDamage(Damage,true);         
             TowerAttackPool.instance.ReturnObj(this);
         }
-    }
+    } 
 
-    private void OnCollisionEnter(Collision col) {
-        if(col.gameObject==Target){        
-            //TowerAttackPool.instance.ReturnObj(this);
-        }
-        
-    }
-
-    //버튼 업그레이트
-    public void UpGradeDMG(){
-        Damage+=1.0;
-    }
+   
 }

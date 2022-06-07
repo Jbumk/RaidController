@@ -33,11 +33,14 @@ public class UIManager : MonoBehaviour
     public GameObject PanBuff;
     public GameObject PanUpGrade;
 
+    [Header("InGame")]
+    public TextMeshProUGUI Gold;
+
     
 
     
     
-    //버튼으로 할것
+    //버튼으로 할것 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     public void Main_Start(){
         PanMain.SetActive(false);
@@ -126,7 +129,11 @@ public class UIManager : MonoBehaviour
         PanMain.SetActive(transform);
         //홈화면으로
     }
+    //버튼 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-
+    //골드 표시
+    public void Show_Gold(int Money){
+        Gold.text = string.Format("{0} G", Money);
+    }
 
 }

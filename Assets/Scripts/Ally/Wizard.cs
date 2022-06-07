@@ -9,10 +9,9 @@ public class Wizard : MonoBehaviour
     public GameObject DietectArea;
     private Rigidbody rigid;
  
-    private Vector3 ArrivalPoint;
-    public bool isFind=false;
+    private GameObject ArrivalPoint;
     private Vector3 Direc;
-    private Vector3 PlayerPoint;
+    private Vector3 EnemyPoint;
 
     private GameObject Target; 
 
@@ -43,14 +42,14 @@ public class Wizard : MonoBehaviour
             MaxHealth=0;
             Health=0;
             MoveSpeed=0;
-            ArrivalPoint = Vector3.zero;            
+            ArrivalPoint = null;            
         }    
     }
     
     void FixedUpdate()
     {    
         if(Health>0){
-            if(isFind){
+            if(Target!=null){
                 AttackTimer+=Time.deltaTime;
                 WizardPrefab.transform.LookAt(Target.transform.position);
                                 
@@ -58,9 +57,13 @@ public class Wizard : MonoBehaviour
                 if(AttackTimer>=AttackCoolTime){
                     var Attack = WizardMagicPool.instance.GetMagic();
                     Attack.transform.position=transform.position;
-                    Attack.SetArrival(Target,GameManager.ChkMagicDMG(),MagicSize);
+                    Attack.SetArrival(Target,MagicSize);
                     AttackTimer=0;   
-                }             
+                } 
+
+                if(Vector3.Distance(this.transform.position,Target.transform.position)>=16){
+                    Target=null;
+                }            
                 
             }
             else{                
@@ -83,29 +86,21 @@ public class Wizard : MonoBehaviour
         Health = HP;
         MoveSpeed = Speed;
     }
-    public void SetArrival(Vector3 Point){
-        ArrivalPoint = Point;
-        WizardPrefab.transform.LookAt(Point);
+    public void SetArrival(){
+        ArrivalPoint = GameManager.ChkArrival();
+        WizardPrefab.transform.LookAt(ArrivalPoint.transform.position);
     }
 
     public void DetectEnemy(Vector3 point){
-        //거리 안에 적이 발견됐을때
-        //해당 적의 위치를 받아와     
-        //해당 적을 바라본채로 사거리 까지 다가가고
-        isFind=true; 
-        PlayerPoint = point;             
+        EnemyPoint = point;             
        
     }
 
     public void LookForward(){        
-        WizardPrefab.transform.LookAt(ArrivalPoint);
-        isFind=false;        
-    }
-   
-    public bool FindChk(){
-        return isFind;
-    }
-
+        WizardPrefab.transform.LookAt(ArrivalPoint.transform.position);
+       
+    }   
+  
     public void SetManager(GameObject obj){
         GameManager = obj.GetComponent<GameManager>();
     }
@@ -113,18 +108,15 @@ public class Wizard : MonoBehaviour
     //충돌 관련ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.CompareTag("Enemy")){
-            Target = col.gameObject;
-            //DetectEnemy(col.transform.position);
-            isFind=true;
-            PlayerPoint=Target.transform.position;            
+            Target = col.gameObject;      
+            EnemyPoint=Target.transform.position;            
         }
     }
 
     private void OnTriggerExit(Collider col) {
         if(col.gameObject==Target){
-            isFind=false;
             Target=null;
-            PlayerPoint=Vector3.zero;
+            EnemyPoint=Vector3.zero;
         }
     }
   
@@ -135,7 +127,7 @@ public class Wizard : MonoBehaviour
     }
 
     private void OnCollisionStay(Collision col) {
-        if(!col.gameObject.CompareTag("Enemy") && Vector3.Distance(this.transform.position,PlayerPoint)<=0.1){
+        if(!col.gameObject.CompareTag("Enemy") && Vector3.Distance(this.transform.position,EnemyPoint)<=0.1){
             LookForward();            
         }
     }

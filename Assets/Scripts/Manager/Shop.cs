@@ -18,7 +18,7 @@ public class Shop : MonoBehaviour
     [Header("Money")]
     private int Money=0;
     private int MoneyIncrease=10;
-    private double MoneyInterval=10;
+    private double MoneyInterval=5.0;
     private float MoneyTimer=0;
     
 
@@ -52,10 +52,11 @@ public class Shop : MonoBehaviour
 
     private void Update() {
         //if문 게임 시작됐을때
-        MoneyTimer+=Time.deltaTime;
-        if(MoneyTimer>=MoneyInterval){
+        MoneyTimer+=Time.deltaTime;        
+        if(MoneyTimer>=MoneyInterval){           
             Money+=MoneyIncrease;
             MoneyTimer=0;
+            UIManager.instance.Show_Gold(Money);
         }
     }
 
@@ -88,9 +89,44 @@ public class Shop : MonoBehaviour
         SummonPos.x += Random.Range(0,5);
         SummonPos.z += Random.Range(0,5);
         Ally.transform.position = SummonPos;
+    }    
+    
+    // 공격지역 아군 생성 1
+    public void SummonAD(){
+        if(Money>=10){
+            Money-=10;
+            UIManager.instance.Show_Gold(Money);
+            var obj = ArcherPool.instance.SummonArcher();
+            SummonPos = SummonZone1.transform.position;
+            SummonPos.x += Random.Range(0,5);
+            SummonPos.z += Random.Range(0,5);
+            obj.transform.position= SummonPos;
+        }
     }
 
-    // 공격지역 아군 생성 1
+    public void SummonAP(){
+        if(Money>=10){
+            Money-=10;
+            UIManager.instance.Show_Gold(Money);
+            var obj = WizardPool.instance.SummonWizrd();
+            SummonPos = SummonZone1.transform.position;
+            SummonPos.x += Random.Range(0,5);
+            SummonPos.z += Random.Range(0,5);
+            obj.transform.position= SummonPos;
+        }
+    }
+
+    public void SummonTank(){
+        if(Money>=10){
+            Money-=10;
+            UIManager.instance.Show_Gold(Money);
+            var obj = AttackerPool.instance.GetAttacker();
+            SummonPos = SummonZone1.transform.position;
+            SummonPos.x += Random.Range(0,5);
+            SummonPos.z += Random.Range(0,5);
+            obj.transform.position= SummonPos;
+        }
+    }
 
     // 골드 수급량 증가
     public void UpgradeMoneyIncrease(){

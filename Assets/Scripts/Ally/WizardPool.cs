@@ -36,12 +36,14 @@ public class WizardPool : MonoBehaviour
            var obj = WizardQueue.Dequeue();
            obj.transform.SetParent(null);
            obj.gameObject.SetActive(true);
+           obj.SetArrival();
 
            return obj;
        }else{
            var obj = CreateNewWizard();
            obj.transform.SetParent(null);
            obj.gameObject.SetActive(true);
+           obj.SetArrival();
 
            return obj;
        }

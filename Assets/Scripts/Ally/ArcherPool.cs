@@ -32,15 +32,17 @@ public class ArcherPool : MonoBehaviour
 
   public Archer SummonArcher(){
       if(ArcherQueue.Count>0){
-          var obj = ArcherQueue.Dequeue();
+          var obj = ArcherQueue.Dequeue();          
           obj.transform.SetParent(null);
           obj.gameObject.SetActive(true);
+          obj.SetArrival();          
 
           return obj;
       }else{
           var obj = CreateArcher();
           obj.transform.SetParent(null);
           obj.gameObject.SetActive(true);
+          obj.SetArrival(); 
 
           return obj;
       }
