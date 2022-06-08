@@ -27,14 +27,30 @@ public class Shop : MonoBehaviour
     public GameObject SummonZone1;
     private Vector3 SummonPos;
     
+    //재화 관리 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
     //수비지역 아군1 생성 가격
     private int SummonAlly1Price = 10;
-
     //수급량 증가 가격
     private int IncreasePrice=10;
-
     //수급 시간 단축 가격
     private int IntervalPrice=10;
+    //AD 공격속도 가격
+    private int ArrowASPrice=10;
+    //AD 공격력 가격
+    private int ArrowDMGPrice=10;
+    //AP 공격력 가격
+    private int MagicDMGPrice=10;
+    //AP 히트간격 가격
+    private int MagicIgnorePrice=20;
+    //타워 공격력 가격
+    private int BulletDMGPrice=10;
+    //타워 공격속도 가격
+    private int BulletASPrice=10;
+
+    
+
+    //재화 관리 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     //타워
     public GameObject[] LTower;
@@ -128,6 +144,8 @@ public class Shop : MonoBehaviour
         }
     }
 
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 업그레이드 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
     // 골드 수급량 증가
     public void UpgradeMoneyIncrease(){
         if(Money>=IncreasePrice){
@@ -151,5 +169,50 @@ public class Shop : MonoBehaviour
         }
     }
 
+    // 공격자 관련
+    //물리 딜러
+    public void UpGradeArrowAS(){
+        if(Money>=ArrowASPrice){
+            GameManager.instance.Up_ArrowAS();
+            ArrowASPrice+=10;
+        }
+    }
 
+    public void UpGradeArrowDMG(){
+        if(Money>=ArrowDMGPrice){
+            GameManager.instance.Up_ArrowDMG();
+            ArrowDMGPrice+=10;
+        }
+    }
+
+    //마법 딜러
+    public void UpGradeMagicDMG(){
+        if(Money>=MagicDMGPrice){
+            GameManager.instance.Up_MagicDMG();
+            MagicDMGPrice+=10;
+        }
+    }
+    public void UpGradeMagicIgnore(){
+        if(Money>=MagicIgnorePrice){
+            GameManager.instance.Up_IgNoreTime();
+            MagicIgnorePrice+=20;
+        }
+    }
+
+    //탱커 
+
+
+    //타워
+    public void UpGradeBulletDMG(){
+        if(Money>=BulletDMGPrice){
+            GameManager.instance.Up_BulletDMG();
+            BulletDMGPrice+=10;
+        }
+    }
+    public void UpGradeBulletAS(){
+        if(Money>=BulletASPrice){
+            GameManager.instance.Up_BulletAS();
+            BulletASPrice+=10;
+        }
+    }
 }

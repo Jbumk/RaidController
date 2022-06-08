@@ -18,9 +18,8 @@ public class Archer : MonoBehaviour
     
     //공격 딜레이
     private float AttackTimer=0;
-    private double AttackCoolTime=2.0;
     
-    private GameManager GameManager;    
+
 
     [Header("Spec")]
     public double MaxHealth=100;
@@ -55,10 +54,10 @@ public class Archer : MonoBehaviour
                 ArcherPrefab.transform.LookAt(Target.transform.position);
                                 
                 //멈춰서서 공격
-                if(AttackTimer>=AttackCoolTime){
+                if(AttackTimer>=GameManager.instance.ChkArrowAS()){
                     var Attack = ArcherAttackPool.instance.GetArrow();
                     Attack.transform.position=transform.position;
-                    Attack.SetArrival(Target,GameManager.ChkArrowDMG());
+                    Attack.SetArrival(Target);
                     AttackTimer=0;   
                 } 
                  if(Vector3.Distance(this.transform.position,Target.transform.position)>=16){
@@ -90,41 +89,27 @@ public class Archer : MonoBehaviour
         MoveSpeed = Speed;
     }
     public void SetArrival(){        
-        ArrivalPoint = GameManager.ChkArrival();
+        ArrivalPoint = GameManager.instance.ChkArrival();
         ArcherPrefab.transform.LookAt(ArrivalPoint.transform.position);
-    }
-
-    /*
-    public void DetectEnemy(Vector3 point){       
-        PlayerPoint = point;             
-       
-    }
-    */
+    } 
 
     public void LookForward(){        
         ArcherPrefab.transform.LookAt(ArrivalPoint.transform.position);
        
-    }   
- 
+    }    
 
-    public void SetManager(GameObject obj){
-        GameManager= obj.GetComponent<GameManager>();
-        
-    }
 
 
     //충돌 관련ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.CompareTag("Enemy")){
-            Target = col.gameObject;          
-         
+            Target = col.gameObject;       
             PlayerPoint=Target.transform.position;            
         }
     }
 
     private void OnTriggerExit(Collider col) {
-        if(col.gameObject==Target){
-         
+        if(col.gameObject==Target){         
             Target=null;
             PlayerPoint=Vector3.zero;
         }

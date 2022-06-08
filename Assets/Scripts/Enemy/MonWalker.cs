@@ -8,23 +8,21 @@ public class MonWalker : MonoBehaviour
     public GameObject MonPrefab;
     public GameObject DietectArea;
     private Rigidbody rigid;
-    private Vector3 ArrivalPoint;
-    
-    public bool isFind=false;
+    private Vector3 ArrivalPoint;    
+ 
     private Vector3 HitDirec;
     private Vector3 PlayerPoint;
 
     private GameObject CollideTarget;
+
+    private GameObject Target;
 
     private float SlowTimer=0;
     private double SlowEndTime=1.5;
     private bool isSlow=false;  
 
     private float HitTimer=0.5f;
-    private double HitIgnoreTime=0.5;
-    
-
-    private GameManager GameManager;
+   
     
     [Header("Spec")]
     private double Health;
@@ -38,9 +36,14 @@ public class MonWalker : MonoBehaviour
     {  
         if(Health>0){
             // 적 감지했을 때
-            if(isFind){
-                MonPrefab.transform.LookAt(PlayerPoint);
+            if(Target!=null){
+                MonPrefab.transform.LookAt(Target.transform.position);
+
+                 if(Vector3.Distance(this.transform.position,Target.transform.position)>=16){
+                Target=null;
+            }
             }                
+           
            
 
             // 맞아서 슬로우 상태일때
@@ -77,28 +80,8 @@ public class MonWalker : MonoBehaviour
         MonPrefab.transform.LookAt(Point);
     }
 
-    public void DetectEnemy(Vector3 point){
-        //거리 안에 적이 발견됐을때
-        //해당 적의 위치를 받아와           
-        //해당 적을 바라본채로 사거리 까지 다가가고
-        isFind=true; 
-        PlayerPoint = point;       
-               
-        // 그후 정지하고 공격한다
-    }
-
     public void LookForward(){        
-        MonPrefab.transform.LookAt(ArrivalPoint);
-        isFind=false;
-        //isFight=false;
-    }
-
-    public bool FindChk(){
-        return isFind;
-    }
-
-    public void SetManager(GameObject obj){
-        GameManager = obj.GetComponent<GameManager>();
+        MonPrefab.transform.LookAt(ArrivalPoint);  
     }
 
 
@@ -110,14 +93,22 @@ public class MonWalker : MonoBehaviour
             WalkerPool.instance.ReturnMon(this);
         }
 
-          
+        if(col.gameObject.CompareTag("Ally")){
+            Target = col.gameObject;
+        }      
+    }
+
+    private void OnTriggerExit(Collider col) {
+        if(col.gameObject==Target){
+            Target=null;
+        }
     }
 
     private void OnTriggerStay(Collider col) {
         if(col.gameObject.CompareTag("Magic")){
             HitTimer+=Time.deltaTime;
-            if(HitTimer>=HitIgnoreTime){
-                HitDamage(GameManager.ChkMagicDMG(),true);
+            if(HitTimer>= GameManager.instance.ChkIgnoreTime()){
+                HitDamage(GameManager.instance.ChkMagicDMG(),true);
                 Debug.Log("데미지s 들어감");                 
                 HitTimer=0;
             }
@@ -135,15 +126,9 @@ public class MonWalker : MonoBehaviour
             CollideTarget =col.gameObject;         
             HitDamage(0,false);            
         }         
-    }     
-    
+    }         
    
     
-    private void OnCollisionStay(Collision col) {
-        if(!col.gameObject.CompareTag("Ally") && Vector3.Distance(this.transform.position,PlayerPoint)<=0.1){
-            LookForward();            
-        }
-    }
     
 
     public void HitDamage(double dmg,bool isBullet){
@@ -153,8 +138,7 @@ public class MonWalker : MonoBehaviour
         if(!isBullet){
             rigid.AddForce((this.transform.position-CollideTarget.transform.position).normalized*4f,ForceMode.Impulse);                     
         }
-        //약간 빨개지는 이펙트 추가
-        
+        //약간 빨개지는 이펙트 추가      
        
     }
     

@@ -7,7 +7,6 @@ public class WizardPool : MonoBehaviour
    public static WizardPool instance;
 
    public GameObject WizardPrefab;
-   public GameObject Manager;
 
    private Queue<Wizard> WizardQueue = new Queue<Wizard>();
 
@@ -23,8 +22,7 @@ public class WizardPool : MonoBehaviour
    }
 
    private Wizard CreateNewWizard(){
-       var obj = Instantiate(WizardPrefab).GetComponent<Wizard>();
-       obj.SetManager(Manager);
+       var obj = Instantiate(WizardPrefab).GetComponent<Wizard>();  
        obj.transform.SetParent(transform);
        obj.gameObject.SetActive(false);
 

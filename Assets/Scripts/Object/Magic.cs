@@ -14,11 +14,11 @@ public class Magic : MonoBehaviour
         transform.Translate(Vector3.forward*5f*Time.deltaTime);
     }
 
-    public void SetArrival(GameObject Target,Vector3 Size){
+    public void SetArrival(GameObject Target){
         this.Target = Target;
         Arrival = Target.transform.position;  
         TargetHit=Target.GetComponent<MonWalker>();
         transform.LookAt(Arrival);
-        this.transform.localScale = Size;   
+        this.transform.localScale = GameManager.instance.ChkMagicSize();   
     }
 }

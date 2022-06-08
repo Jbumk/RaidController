@@ -5,7 +5,6 @@ using UnityEngine;
 public class AttackerPool : MonoBehaviour
 {
   public static AttackerPool instance;
-  public GameObject Manager;
   private Queue<Attacker> AttackerQueue = new Queue<Attacker>();
 
   public GameObject AttackPrefab;
@@ -26,7 +25,6 @@ public class AttackerPool : MonoBehaviour
 
   private Attacker CreateNewAttacker(){
       var newAttacker = Instantiate(AttackPrefab).GetComponent<Attacker>();
-      newAttacker.SetManager(Manager);
       newAttacker.transform.SetParent(transform);
       newAttacker.gameObject.SetActive(false);
 

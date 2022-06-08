@@ -128,7 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonPrefab: {fileID: 521670403552511476}
   DietectArea: {fileID: 521670404028238228}
-  isFind: 0
 --- !u!1 &521670404028238228
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +139,6 @@ GameObject:
   - component: {fileID: 521670404028238224}
   - component: {fileID: 521670404028238230}
   - component: {fileID: 2517946126726282892}
-  - component: {fileID: 8536972289179919955}
   m_Layer: 0
   m_Name: WalkerSenser
   m_TagString: Untagged
@@ -188,19 +186,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonPrefab: {fileID: 521670403552511476}
---- !u!54 &8536972289179919955
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521670404028238228}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

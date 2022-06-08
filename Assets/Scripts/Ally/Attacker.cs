@@ -10,14 +10,11 @@ public class Attacker : MonoBehaviour
     private Rigidbody rigid;
  
     private GameObject ArrivalPoint;
-    public bool isFind=false;
     private Vector3 Direc;
     private Vector3 EnemyPoint;
 
     private GameObject Target;
 
-    private GameManager GameManager;    
-    
     [Header("Spec")]
     public double MaxHealth=100;
     public double Health=100;
@@ -46,10 +43,20 @@ public class Attacker : MonoBehaviour
     void FixedUpdate()
     {    
         if(Health>0){
-            if(isFind){
-                AttackerPrefab.transform.LookAt(EnemyPoint);
-            }                
-            AttackerPrefab.transform.Translate(Vector3.forward* MoveSpeed * Time.deltaTime);
+            if(Target!=null){
+                AttackerPrefab.transform.LookAt(Target.transform.position);                 
+
+                if(Vector3.Distance(this.transform.position,Target.transform.position)>=16){
+                    Target=null;                
+                }            
+            }
+            else{
+                AttackerPrefab.transform.LookAt(ArrivalPoint.transform.position);
+            }    
+
+            AttackerPrefab.transform.Translate(Vector3.forward* MoveSpeed * Time.deltaTime);           
+           
+
             //테스트 해봐야함
             if(HealBuff){
                 HealBuffCount+=Time.deltaTime;
@@ -57,6 +64,8 @@ public class Attacker : MonoBehaviour
                     Health += MaxHealth*0.02;
                 }
             }
+
+            
         }  
     }
 
@@ -68,38 +77,27 @@ public class Attacker : MonoBehaviour
         MoveSpeed = Speed;
     }
     public void SetArrival(){
-        ArrivalPoint = GameManager.ChkArrival();
+        ArrivalPoint = GameManager.instance.ChkArrival();
         AttackerPrefab.transform.LookAt(ArrivalPoint.transform.position);
-    }
-
-    public void DetectEnemy(Vector3 point){
-        //거리 안에 적이 발견됐을때
-        //해당 적의 위치를 받아와     
-        //해당 적을 바라본채로 사거리 까지 다가가고
-        isFind=true; 
-        EnemyPoint = point;       
-               
-        // 그후 정지하고 공격한다
-    }
+    } 
 
     public void LookForward(){        
         AttackerPrefab.transform.LookAt(ArrivalPoint.transform.position);
-        isFind=false;        
+      
     }
-   
-    public bool FindChk(){
-        return isFind;
-    }
-    
-    public void SetManager(GameObject obj){
-        GameManager = obj.GetComponent<GameManager>();
-    }
+
 
     //충돌 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.CompareTag("Enemy")){
-            DetectEnemy(col.transform.position);
+            Target = col.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider col) {
+        if(col.gameObject==Target){
+            Target = null;
         }
     }
   

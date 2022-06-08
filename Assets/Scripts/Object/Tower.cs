@@ -10,7 +10,6 @@ public class Tower : MonoBehaviour
    private Quaternion Direc;
    public GameManager GameManager;
 
-   private double AttackCoolTime = 2.0;
    private float AttackTimer = 0;
 
 
@@ -42,7 +41,7 @@ public class Tower : MonoBehaviour
            Direc.z=0;
            TowerPrefab.transform.rotation=Direc;
 
-            if(AttackTimer>=AttackCoolTime){
+            if(AttackTimer>= GameManager.instance.ChkBulletAS()){
             //해당 방향으로 발사
                 Direction = (TargetObj.transform.position - TowerPrefab.transform.position);
                 var Bullet = TowerAttackPool.instance.GetObj();
@@ -65,7 +64,7 @@ public class Tower : MonoBehaviour
                TargetObj=null;
            }
        }
-
+        /*
        if(DMGBuff){
            DMGBuffCount+=Time.deltaTime;
            if(DMGBuffTime<=DMGBuffCount){
@@ -73,6 +72,8 @@ public class Tower : MonoBehaviour
                DMGBuff=false;               
            }
        }
+       */
+       /*
        if(SpeedBuff){
            SPeedBuffCount+=Time.deltaTime;
            if(SpeedBuffTime<=SPeedBuffCount){
@@ -81,6 +82,7 @@ public class Tower : MonoBehaviour
                SpeedBuff=false;
            }
        }
+       */
    }
  
    
@@ -90,18 +92,17 @@ public class Tower : MonoBehaviour
        }
    }
 
-   //버튼으로 업그레이드
-   public void UpGradeSpeed(){
-       AttackCoolTime-=0.1;
-   }
+   //버튼으로 업그레이드  
 
+    /*
    public void Buff_DMG(){
        DMGBuff=true;
    }
 
    public void Buff_Speed(){
-       OriginAttackCoolTime = AttackCoolTime;
+       OriginAttackCoolTime = ;
        AttackCoolTime *= 0.7;
        SpeedBuff=true;
    }
+   */
 }

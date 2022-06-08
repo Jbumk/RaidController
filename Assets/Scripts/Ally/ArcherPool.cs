@@ -6,7 +6,6 @@ public class ArcherPool : MonoBehaviour
 {
   public static ArcherPool instance;
   public GameObject ArcherPrefab;
-  public GameObject Manager;
 
   Queue<Archer> ArcherQueue = new Queue<Archer>();
 
@@ -23,7 +22,6 @@ public class ArcherPool : MonoBehaviour
 
   private Archer CreateArcher(){
       var newObj = Instantiate(ArcherPrefab).GetComponent<Archer>();
-      newObj.SetManager(Manager);
       newObj.transform.SetParent(transform);
       newObj.gameObject.SetActive(false);
 

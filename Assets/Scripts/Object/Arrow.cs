@@ -7,24 +7,23 @@ public class Arrow : MonoBehaviour
     private Vector3 Arrival;
     private GameObject Target;
     private MonWalker TargetHit;
-    private double Damage;
+   
     
     void Update()
     {
         transform.Translate(Vector3.forward*5f*Time.deltaTime);
     }
 
-    public void SetArrival(GameObject Target,double DMG){
+    public void SetArrival(GameObject Target){
         this.Target = Target;
-        Arrival = Target.transform.position;
-        Damage = DMG;
+        Arrival = Target.transform.position;       
         TargetHit=Target.GetComponent<MonWalker>();
         transform.LookAt(Arrival);
     }
 
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject==Target){
-            TargetHit.HitDamage(Damage,true);
+            TargetHit.HitDamage(GameManager.instance.ChkArrowDMG(),true);
             ArcherAttackPool.instance.ReturnArrow(this);            
         }
     }

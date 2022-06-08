@@ -17,14 +17,12 @@ public class Wizard : MonoBehaviour
 
     private float AttackTimer=0;
     private double AttackCoolTime=2.0;  
-
-    private GameManager GameManager; 
     
     [Header("Spec")]
     public double MaxHealth=100;
     public double Health=100;
     private float MoveSpeed=1f;
-    private Vector3 MagicSize = new Vector3(1f,1f,3f);
+    
 
     //버프
     private bool HealBuff=false;
@@ -57,7 +55,7 @@ public class Wizard : MonoBehaviour
                 if(AttackTimer>=AttackCoolTime){
                     var Attack = WizardMagicPool.instance.GetMagic();
                     Attack.transform.position=transform.position;
-                    Attack.SetArrival(Target,MagicSize);
+                    Attack.SetArrival(Target);
                     AttackTimer=0;   
                 } 
 
@@ -87,7 +85,7 @@ public class Wizard : MonoBehaviour
         MoveSpeed = Speed;
     }
     public void SetArrival(){
-        ArrivalPoint = GameManager.ChkArrival();
+        ArrivalPoint = GameManager.instance.ChkArrival();
         WizardPrefab.transform.LookAt(ArrivalPoint.transform.position);
     }
 
@@ -99,11 +97,8 @@ public class Wizard : MonoBehaviour
     public void LookForward(){        
         WizardPrefab.transform.LookAt(ArrivalPoint.transform.position);
        
-    }   
+    }     
   
-    public void SetManager(GameObject obj){
-        GameManager = obj.GetComponent<GameManager>();
-    }
 
     //충돌 관련ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     private void OnTriggerEnter(Collider col) {
