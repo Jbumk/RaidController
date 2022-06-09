@@ -36,6 +36,7 @@ public class AttackerPool : MonoBehaviour
           var Attackers = AttackerQueue.Dequeue();
           Attackers.transform.SetParent(null);
           Attackers.gameObject.SetActive(true);
+          Attackers.SetSpec(GameManager.instance.ChkTankHealth());
           Attackers.SetArrival();
 
           return Attackers;
@@ -43,6 +44,7 @@ public class AttackerPool : MonoBehaviour
           var newAttacker = CreateNewAttacker();
           newAttacker.transform.SetParent(null);
           newAttacker.gameObject.SetActive(true);
+          newAttacker.SetSpec(GameManager.instance.ChkTankHealth());
           newAttacker.SetArrival();
 
           return newAttacker;

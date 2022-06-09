@@ -38,8 +38,7 @@ public class Wizard : MonoBehaviour
             //풀링 반환 + Health 초기화 + Speed 초기화
             WizardPool.instance.ReturnWizard(this);
             MaxHealth=0;
-            Health=0;
-            MoveSpeed=0;
+            Health=0;          
             ArrivalPoint = null;            
         }    
     }
@@ -79,10 +78,9 @@ public class Wizard : MonoBehaviour
 
     //설정 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-    public void SetSpec(double HP, float Speed){
+    public void SetSpec(double HP){
         MaxHealth = HP;
-        Health = HP;
-        MoveSpeed = Speed;
+        Health = HP;      
     }
     public void SetArrival(){
         ArrivalPoint = GameManager.instance.ChkArrival();

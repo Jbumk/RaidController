@@ -40,8 +40,7 @@ public class Archer : MonoBehaviour
             //풀링 반환 + Health 초기화 + Speed 초기화
             ArcherPool.instance.ReturnArcher(this);
             MaxHealth=0;
-            Health=0;
-            MoveSpeed=0;
+            Health=0;          
             ArrivalPoint = null;            
         }    
     }
@@ -83,10 +82,10 @@ public class Archer : MonoBehaviour
 
     //설정 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-    public void SetSpec(double HP, float Speed){
+    public void SetSpec(double HP){
         MaxHealth = HP;
         Health = HP;
-        MoveSpeed = Speed;
+        
     }
     public void SetArrival(){        
         ArrivalPoint = GameManager.instance.ChkArrival();

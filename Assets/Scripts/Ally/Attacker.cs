@@ -34,8 +34,7 @@ public class Attacker : MonoBehaviour
             //풀링 반환 + Health 초기화 + Speed 초기화
             AttackerPool.instance.ReturnAttacker(this);
             MaxHealth=0;
-            Health=0;
-            MoveSpeed=0;
+            Health=0;          
             ArrivalPoint = null;            
         }    
     }
@@ -71,10 +70,9 @@ public class Attacker : MonoBehaviour
 
     //설정 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-    public void SetSpec(double HP, float Speed){
+    public void SetSpec(double HP){
         MaxHealth = HP;
-        Health = HP;
-        MoveSpeed = Speed;
+        Health = HP;      
     }
     public void SetArrival(){
         ArrivalPoint = GameManager.instance.ChkArrival();
@@ -115,7 +113,7 @@ public class Attacker : MonoBehaviour
 
 
     public void HitDamage(double dmg,GameObject obj){
-        Health -= dmg;
+        Health -= (dmg-GameManager.instance.ChkTankDEF());
         rigid.AddForce((this.transform.position-obj.transform.position).normalized *3f,ForceMode.Impulse);        
     }
 

@@ -33,6 +33,7 @@ public class ArcherPool : MonoBehaviour
           var obj = ArcherQueue.Dequeue();          
           obj.transform.SetParent(null);
           obj.gameObject.SetActive(true);
+          obj.SetSpec(GameManager.instance.ChkADHealth());
           obj.SetArrival();          
 
           return obj;
@@ -40,6 +41,7 @@ public class ArcherPool : MonoBehaviour
           var obj = CreateArcher();
           obj.transform.SetParent(null);
           obj.gameObject.SetActive(true);
+          obj.SetSpec(GameManager.instance.ChkADHealth());
           obj.SetArrival(); 
 
           return obj;

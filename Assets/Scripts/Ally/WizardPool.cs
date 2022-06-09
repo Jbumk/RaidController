@@ -34,6 +34,7 @@ public class WizardPool : MonoBehaviour
            var obj = WizardQueue.Dequeue();
            obj.transform.SetParent(null);
            obj.gameObject.SetActive(true);
+           obj.SetSpec(GameManager.instance.ChkAPHealth());
            obj.SetArrival();
 
            return obj;
@@ -41,6 +42,7 @@ public class WizardPool : MonoBehaviour
            var obj = CreateNewWizard();
            obj.transform.SetParent(null);
            obj.gameObject.SetActive(true);
+           obj.SetSpec(GameManager.instance.ChkAPHealth());
            obj.SetArrival();
 
            return obj;
