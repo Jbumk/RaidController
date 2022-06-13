@@ -18,19 +18,36 @@ public class MonWalker : MonoBehaviour
     private GameObject Target;
 
     private float SlowTimer=0;
-    private double SlowEndTime=1.5;
+    private double SlowEndTime=0.8;
     private bool isSlow=false;  
 
     private float HitTimer=0.5f;
    
     
-    [Header("Spec")]
+    //스펙
     private double Health;
-    private float MoveSpeed;   
+    private float MoveSpeed;
+
+    //이미지
+    public GameObject Sprite;
+    private Renderer MonColor;
+    public Material[] mats;
+    public Material M_Green,M_Blue,M_Red,M_Black;
+    private double HitColorTerm =0.8;
+    private float HitColorTimer = 0;
+    private bool isHit=false;
+
+       
 
     
     private void Awake() {
         rigid = MonPrefab.GetComponent<Rigidbody>();
+        MonColor = Sprite.GetComponent<Renderer>();
+        mats = MonColor.sharedMaterials;
+        M_Green=mats[0];
+        M_Blue=mats[1];
+        M_Red=mats[2];
+        M_Black=mats[3];
     }
     void FixedUpdate()
     {  
@@ -38,10 +55,9 @@ public class MonWalker : MonoBehaviour
             // 적 감지했을 때
             if(Target!=null){
                 MonPrefab.transform.LookAt(Target.transform.position);
-
-                 if(Vector3.Distance(this.transform.position,Target.transform.position)>=16){
-                Target=null;
-            }
+                if(Vector3.Distance(this.transform.position,Target.transform.position)>=16){
+                    Target=null;
+                }   
             }                
            
            
@@ -57,23 +73,57 @@ public class MonWalker : MonoBehaviour
             else{
              MonPrefab.transform.Translate(Vector3.forward* MoveSpeed * Time.deltaTime);
             }
+
+            if(isHit){
+                HitColorTimer+=Time.deltaTime;
+                if(HitColorTimer>=HitColorTerm){
+                    isHit=false;
+                    MonColor.material.color = Color.white;
+                }
+            }
         }      
 
           if(Health<=0){
-            //풀링 반환 + Health 초기화 + Speed 초기화
-            WalkerPool.instance.ReturnMon(this);
+            //풀링 반환 + Health 초기화 + Speed 초기화            
             Health=0;
             MoveSpeed=0;
-            ArrivalPoint = Vector3.zero;            
+            isHit=false;
+            HitColorTimer=0;
+            MonColor.material.color = Color.white;
+            ArrivalPoint = Vector3.zero;
+            WalkerPool.instance.ReturnMon(this);            
         } 
        
     }
     
     //설정 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-    public void SetSpec(double HP, float Speed){
+    public void SetSpec(double HP, float Speed,int type){
         Health = HP;
         MoveSpeed = Speed;
+        switch (type)
+        {
+            case 0:
+                mats[3]=M_Green;
+                MonColor.sharedMaterials =mats;
+                break;
+            case 1:
+                mats[3]=M_Blue;
+                MonColor.sharedMaterials =mats;
+                break;
+            case 2:
+                mats[3]=M_Red;
+                MonColor.sharedMaterials =mats;
+                break;
+            case 3:
+                mats[3]=M_Black;
+                MonColor.sharedMaterials =mats;
+                break;            
+            default:
+                mats[3]=M_Green;
+                MonColor.sharedMaterials =mats;
+                break;
+        }
     }
     public void SetArrival(Vector3 Point){
         ArrivalPoint = Point;
@@ -83,6 +133,8 @@ public class MonWalker : MonoBehaviour
     public void LookForward(){        
         MonPrefab.transform.LookAt(ArrivalPoint);  
     }
+
+   
 
 
     //충돌 관련 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -136,9 +188,15 @@ public class MonWalker : MonoBehaviour
         SlowTimer=0;
         isSlow=true;          
         if(!isBullet){
-            rigid.AddForce((this.transform.position-CollideTarget.transform.position).normalized*4f,ForceMode.Impulse);                     
+            rigid.AddForce((this.transform.position-CollideTarget.transform.position).normalized*4f,ForceMode.Impulse);                             
         }
-        //약간 빨개지는 이펙트 추가      
+        
+        Debug.Log("색변경 시도1");
+        MonColor.material.color = Color.red;
+        isHit=true;
+        HitColorTimer=0;
+        Debug.Log("색변경 시도2");   
+            
        
     }
     
