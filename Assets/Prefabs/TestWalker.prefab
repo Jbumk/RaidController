@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 521670403552511476}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.2, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children:
   - {fileID: 8711666625132624385}
   - {fileID: 521670404028238224}
@@ -130,7 +130,6 @@ MonoBehaviour:
   MonPrefab: {fileID: 521670403552511476}
   DietectArea: {fileID: 521670404028238228}
   Sprite: {fileID: 2390130506477473790}
-  mats: []
 --- !u!1 &521670404028238228
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +236,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2390130506477473790}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1

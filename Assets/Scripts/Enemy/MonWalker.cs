@@ -31,8 +31,8 @@ public class MonWalker : MonoBehaviour
     //이미지
     public GameObject Sprite;
     private Renderer MonColor;
-    public Material[] mats;
-    public Material M_Green,M_Blue,M_Red,M_Black;
+    private Material[] mats;
+    private Material M1_G,M1_B,M1_R,M1_BK,M1_GBoss,M1_BBoss,M1_RBoss,M1_BKBoss;
     private double HitColorTerm =0.8;
     private float HitColorTimer = 0;
     private bool isHit=false;
@@ -44,10 +44,16 @@ public class MonWalker : MonoBehaviour
         rigid = MonPrefab.GetComponent<Rigidbody>();
         MonColor = Sprite.GetComponent<Renderer>();
         mats = MonColor.sharedMaterials;
-        M_Green=mats[0];
-        M_Blue=mats[1];
-        M_Red=mats[2];
-        M_Black=mats[3];
+        M1_G=mats[0];
+        M1_B=mats[1];
+        M1_R=mats[2];
+        M1_BK=mats[3];
+        /*
+        M1_GBoss=mats[4];
+        M1_BBoss=mats[5];
+        M1_RBoss=mats[6];
+        M1_BKBoss=mats[7];
+        */
     }
     void FixedUpdate()
     {  
@@ -78,7 +84,8 @@ public class MonWalker : MonoBehaviour
                 HitColorTimer+=Time.deltaTime;
                 if(HitColorTimer>=HitColorTerm){
                     isHit=false;
-                    MonColor.material.color = Color.white;
+                    mats[mats.Length-1].color = Color.white;
+                    Debug.Log("색 원상복구");
                 }
             }
         }      
@@ -89,7 +96,7 @@ public class MonWalker : MonoBehaviour
             MoveSpeed=0;
             isHit=false;
             HitColorTimer=0;
-            MonColor.material.color = Color.white;
+            mats[mats.Length-1].color = Color.white;
             ArrivalPoint = Vector3.zero;
             WalkerPool.instance.ReturnMon(this);            
         } 
@@ -101,30 +108,34 @@ public class MonWalker : MonoBehaviour
     public void SetSpec(double HP, float Speed,int type){
         Health = HP;
         MoveSpeed = Speed;
+        
         switch (type)
         {
             case 0:
-                mats[3]=M_Green;
+                mats[mats.Length-1]=M1_G;
+                
                 MonColor.sharedMaterials =mats;
                 break;
             case 1:
-                mats[3]=M_Blue;
+                mats[mats.Length-1]=M1_B;
                 MonColor.sharedMaterials =mats;
                 break;
             case 2:
-                mats[3]=M_Red;
+                mats[mats.Length-1]=M1_R;
                 MonColor.sharedMaterials =mats;
                 break;
             case 3:
-                mats[3]=M_Black;
+                mats[mats.Length-1]=M1_BK;
                 MonColor.sharedMaterials =mats;
                 break;            
             default:
-                mats[3]=M_Green;
+                mats[mats.Length-1]=M1_G;
                 MonColor.sharedMaterials =mats;
                 break;
         }
+        
     }
+    
     public void SetArrival(Vector3 Point){
         ArrivalPoint = Point;
         MonPrefab.transform.LookAt(Point);
@@ -192,12 +203,18 @@ public class MonWalker : MonoBehaviour
         }
         
         Debug.Log("색변경 시도1");
-        MonColor.material.color = Color.red;
+        mats[3].color = Color.red;
         isHit=true;
         HitColorTimer=0;
         Debug.Log("색변경 시도2");   
             
        
+    }
+
+    private void OnApplicationQuit() {
+        for(int i=0;i<mats.Length;i++){
+            mats[i].color= Color.white;
+        }
     }
     
 

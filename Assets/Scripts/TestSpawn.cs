@@ -25,7 +25,7 @@ public class TestSpawn : MonoBehaviour
            var mon = WalkerPool.instance.SummonWalker();           
            SummonPoint = new Vector3(0,0,Random.Range(-5,5));
            mon.transform.position=SummonPoint;
-           mon.SetSpec(100,1,3);
+           mon.SetSpec(100,1,0);
            mon.SetArrival(Arrival.transform.position);
           
            count--;
