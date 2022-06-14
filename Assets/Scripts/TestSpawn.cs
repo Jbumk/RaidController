@@ -18,14 +18,14 @@ public class TestSpawn : MonoBehaviour
 
     private static TestSpawn m_inst;
 
-    private int count = 1;
+    private int count = 5;
     private Vector3 SummonPoint;
     private void Update() {
         if(count>0){
            var mon = WalkerPool.instance.SummonWalker();           
            SummonPoint = new Vector3(0,0,Random.Range(-5,5));
            mon.transform.position=SummonPoint;
-           mon.SetSpec(100,1,0);
+           mon.SetSpec(100,1,10);
            mon.SetArrival(Arrival.transform.position);
           
            count--;
