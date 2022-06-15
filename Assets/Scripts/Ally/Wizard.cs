@@ -15,8 +15,7 @@ public class Wizard : MonoBehaviour
 
     private GameObject Target; 
 
-    private float AttackTimer=0;
-    private double AttackCoolTime=2.0;  
+    private float AttackTimer=0;   
     
     [Header("Spec")]
     public double MaxHealth=100;
@@ -51,7 +50,7 @@ public class Wizard : MonoBehaviour
                 WizardPrefab.transform.LookAt(Target.transform.position);
                                 
                 //멈춰서서 공격
-                if(AttackTimer>=AttackCoolTime){
+                if(AttackTimer>=GameManager.instance.ChkMagicAS()){
                     var Attack = WizardMagicPool.instance.GetMagic();
                     Attack.transform.position=transform.position;
                     Attack.SetArrival(Target);
@@ -115,7 +114,7 @@ public class Wizard : MonoBehaviour
   
     private void OnCollisionEnter(Collision col) {
         if(col.gameObject.CompareTag("Enemy")){
-           HitDamage(5,col.gameObject);
+           HitDamage(GameManager.instance.ChkMonCrashDMG(),col.gameObject);
         }  
     }
 

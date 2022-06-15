@@ -62,9 +62,7 @@ public class Attacker : MonoBehaviour
                 if(HealBuffCount%1==0){
                     Health += MaxHealth*0.02;
                 }
-            }
-
-            
+            }           
         }  
     }
 
@@ -101,7 +99,7 @@ public class Attacker : MonoBehaviour
   
     private void OnCollisionEnter(Collision col) {
         if(col.gameObject.CompareTag("Enemy")){
-           HitDamage(5,col.gameObject);
+           HitDamage(GameManager.instance.ChkMonCrashDMG(),col.gameObject);
         }  
     }
 
@@ -113,7 +111,12 @@ public class Attacker : MonoBehaviour
 
 
     public void HitDamage(double dmg,GameObject obj){
-        Health -= (dmg-GameManager.instance.ChkTankDEF());
+        if((dmg-GameManager.instance.ChkTankDEF())>0){
+            Health -= (dmg-GameManager.instance.ChkTankDEF());
+        }else{
+            Health-=0;
+        }
+        
         rigid.AddForce((this.transform.position-obj.transform.position).normalized *3f,ForceMode.Impulse);        
     }
 

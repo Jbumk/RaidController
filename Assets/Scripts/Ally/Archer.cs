@@ -116,7 +116,7 @@ public class Archer : MonoBehaviour
   
     private void OnCollisionEnter(Collision col) {
         if(col.gameObject.CompareTag("Enemy")){
-           HitDamage(5,col.gameObject);
+           HitDamage(GameManager.instance.ChkMonCrashDMG(),col.gameObject);
         }  
     }
 

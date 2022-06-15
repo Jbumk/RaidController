@@ -3620,7 +3620,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 384044956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1958051502}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Buff_DealerAS
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &384044956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4384,7 +4396,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 423962835}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1958051502}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Buff_Invincibility
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &423962835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4626,7 +4650,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 501828039}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1958051502}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Buff_TowerDMG
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &501828039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8537,7 +8573,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "2 \uC9C0\uC5ED\n"
+  m_text: "\uACF5\uACA9 \uC9C0\uC5ED\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4d07319e8a9dd646b9e3e0d01ba3ccb, type: 2}
   m_sharedMaterial: {fileID: 2666860090788558428, guid: f4d07319e8a9dd646b9e3e0d01ba3ccb, type: 2}
@@ -11337,7 +11373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1128471428
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16770,7 +16806,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1618626636}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1958051502}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Buff_TowerAS
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1618626636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17266,7 +17314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
+  m_text: "\uBB34 \uC801"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4d07319e8a9dd646b9e3e0d01ba3ccb, type: 2}
   m_sharedMaterial: {fileID: 2666860090788558428, guid: f4d07319e8a9dd646b9e3e0d01ba3ccb, type: 2}
@@ -18407,7 +18455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1 \uC9C0\uC5ED\n"
+  m_text: "\uC218\uBE44 \uC9C0\uC5ED\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4d07319e8a9dd646b9e3e0d01ba3ccb, type: 2}
   m_sharedMaterial: {fileID: 2666860090788558428, guid: f4d07319e8a9dd646b9e3e0d01ba3ccb, type: 2}
@@ -18884,7 +18932,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC801 \uC804\uCCB4 \uC2AC\uB85C\uC6B0"
+  m_text: "\uC801 \uC77C\uC2DC \uC815\uC9C0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4d07319e8a9dd646b9e3e0d01ba3ccb, type: 2}
   m_sharedMaterial: {fileID: 2666860090788558428, guid: f4d07319e8a9dd646b9e3e0d01ba3ccb, type: 2}
@@ -19823,7 +19871,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1951105244}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1958051502}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Buff_DealerDMG
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1951105244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19903,7 +19963,7 @@ MonoBehaviour:
   PanMoveCam: {fileID: 1035844771}
   PanPause: {fileID: 0}
   PanSummon: {fileID: 1084251369}
-  PanBuff: {fileID: 213027965}
+  PanBuff: {fileID: 318137342}
   PanUpGrade: {fileID: 639949879}
   Gold: {fileID: 914768810}
 --- !u!4 &1958051500
@@ -20848,7 +20908,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC801 \uC804\uCCB4 \uC2AC\uB85C\uC6B0"
+  m_text: "\uC801 \uC77C\uC2DC \uC815\uC9C0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4d07319e8a9dd646b9e3e0d01ba3ccb, type: 2}
   m_sharedMaterial: {fileID: 2666860090788558428, guid: f4d07319e8a9dd646b9e3e0d01ba3ccb, type: 2}

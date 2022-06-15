@@ -146,7 +146,7 @@ public class MonWalker : MonoBehaviour
          if(col.gameObject.CompareTag("Ally")){
             Debug.Log("적과 충돌");
             CollideTarget=col.gameObject;
-            HitDamage(5,false);          
+            HitDamage(GameManager.instance.ChkTankCrashDMG(),false);          
         }
 
         if(col.gameObject.CompareTag("Door")){  
@@ -164,14 +164,11 @@ public class MonWalker : MonoBehaviour
         isSlow=true;          
         if(!isBullet){
             rigid.AddForce((this.transform.position-CollideTarget.transform.position).normalized*4f,ForceMode.Impulse);                             
-        }
-        
-        Debug.Log("색변경 시도1");
+        }        
         MonColor.material.color = Color.red;
         isHit=true;
         HitColorTimer=0;
-        Debug.Log("색변경 시도2");   
-            
+        Debug.Log(dmg +"데미지들어감");          
        
     }
 
