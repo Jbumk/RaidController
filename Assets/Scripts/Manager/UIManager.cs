@@ -36,6 +36,44 @@ public class UIManager : MonoBehaviour
     [Header("InGame")]
     public TextMeshProUGUI Gold;
 
+
+    
+    [Header("UpGradeTank")]
+    //탱커
+    public TextMeshProUGUI TankHealth;
+    public TextMeshProUGUI TankHealthCount;
+    public TextMeshProUGUI TankDEF;
+    public TextMeshProUGUI TankDEFCount;
+    [Header("UpGradeTower")]
+    //타워
+    public TextMeshProUGUI TowerDMG;
+    public TextMeshProUGUI TowerDMGCount;
+    public TextMeshProUGUI TowerAS;
+    public TextMeshProUGUI TowerASCount;
+    [Header("UpGradeDoor")]
+    //문
+    public TextMeshProUGUI DoorHealth;
+    public TextMeshProUGUI DoorHealthCount;
+    public TextMeshProUGUI DoorHeal;
+    public TextMeshProUGUI DoorHealCount;
+    [Header("UpGradeAD")]
+    //AD
+    public TextMeshProUGUI ADDMG;
+    public TextMeshProUGUI ADDMGCount;
+    public TextMeshProUGUI ADHealth;
+    public TextMeshProUGUI ADHealthCount;
+    public TextMeshProUGUI ADAS;
+    public TextMeshProUGUI ADASCount;
+    [Header("UpGradeAP")]
+    //AP
+    public TextMeshProUGUI APDMG;
+    public TextMeshProUGUI APDMGCount;
+    public TextMeshProUGUI APHealth;
+    public TextMeshProUGUI APHealthCount;
+    public TextMeshProUGUI APSize;
+    public TextMeshProUGUI APSizeCount;
+    public TextMeshProUGUI APIgnoreTime;
+    public TextMeshProUGUI APIgnoreTimeCount;
     
 
     
@@ -136,4 +174,66 @@ public class UIManager : MonoBehaviour
         Gold.text = string.Format("{0} G", Money);
     }
 
+    //업그레이드 가격 설정
+    //탱커
+    public void SetPriceTankHealth(int Price,int Count){
+        TankHealth.text = string.Format(Price+" G");
+        TankHealthCount.text = string.Format(Count +" / 5");
+    }
+    public void SetPriceTankDEF(int Price,int Count){
+        TankDEF.text = string.Format(Price+" G");
+        TankDEFCount.text = string.Format(Count +" / 5");
+    }
+
+    //타워
+    public void SetPriceTowerDMG(int Price,int Count){
+        TowerDMG.text =string.Format(Price+" G");
+        TowerDMGCount.text = string.Format(Count +" / 5");
+    }
+    public void SetPriceTowerAS(int Price,int Count){
+        TowerAS.text = string.Format(Price+" G");
+        TowerASCount.text = string.Format(Count + " / 5");
+    }
+
+    //문
+    public void SetPriceDoorHP(int Price,int Count){
+        DoorHealth.text = string.Format(Price+" G");
+        DoorHealCount.text = string.Format(Count +" / 5");
+    }
+    public void SetPriceDoorHeal(int Price,int Count){
+        DoorHeal.text = string.Format(Price + " G");
+        DoorHealCount.text = string.Format(Count + " / 5");
+    }
+    
+    //물리딜러
+    public void SetPriceADDMG(int Price,int Count){
+        ADDMG.text = string.Format(Price +" G");
+        ADDMGCount.text = string.Format(Count + " / 5");
+    }
+    public void SetPriceADHP(int Price,int Count){
+        ADHealth.text = string.Format(Price + " G");
+        ADHealthCount.text =string.Format(Count + " / 5");
+    }
+    public void SetPriceADAS(int Price,int Count){
+        ADAS.text = string.Format(Price + " G");
+        ADASCount.text = string.Format(Count + " / 5");
+    }
+
+    //마법딜러
+    public void SetPriceAPDMG(int Price,int Count){
+        APDMG.text = string.Format(Price + " G");
+        APDMGCount.text = string.Format(Count +" / 5");
+    }
+    public void SetPriceAPHP(int Price,int Count){
+        APHealth.text = string.Format(Price + " G");
+        APHealthCount.text = string.Format(Count + " / 5");
+    }
+    public void SetPriceAPSize(int Price,int Count){
+        APSize.text = string.Format(Price + " G");
+        APSizeCount.text = string.Format(Count + " / 5");
+    }
+    public void SetPriceAPTime(int Price,int Count){
+        APIgnoreTime.text = string.Format(Price + " G");
+        APIgnoreTimeCount.text = string.Format(Count + " / 5");
+    }
 }

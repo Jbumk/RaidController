@@ -21,15 +21,18 @@ public class GameManager : MonoBehaviour
     private double TankCrashDMG=10.0;
 
     //AD 스펙 + 버프
-    private double ArrowDamage=10.0;
-    private double ArrowAS = 2.0;
+    private double ArrowDamage=10.0;    
+    private double ArrowAS = 2.0;    
     private double ADHealth = 100;
+   
 
     //AP 스펙 + 버프
-    private double MagicDamage=3.0;
+    private double MagicDamage=3.0;    
     private Vector3 MagicSize= new Vector3(1f,1f,3f);
-    private double MagicIgnoreTime = 1.0;
+    private int MagicSizeCount=0;
+    private double MagicIgnoreTime = 1.0;    
     private double APHealth = 100;
+    private int APHealthCount=0;
     private double MagicAS = 2.0;
 
     //딜러 통합 버프
@@ -57,11 +60,14 @@ public class GameManager : MonoBehaviour
 
     //탱커 스펙 + 버프
     private double TankHealth = 200;
+    private int TankHealthCount=0;
     private double TankDEF = 1;
+    private int TankDEFCount=0;
 
     //Tower 스펙 + 버프
-    private double BulletDamage=5.0;
+    private double BulletDamage=5.0;   
     private double BulletAS = 2.0;
+    
     //데미지 버프
     private bool B_BulletDMG= false;
     private bool B_isBulletDMGUse=false;
@@ -136,9 +142,9 @@ public class GameManager : MonoBehaviour
         
     }
     
-    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ업그레이드ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    
 
-    //리턴
+    //리턴 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     //충돌데미지
     public double ChkMonCrashDMG(){
         if(B_Invincibility){
@@ -241,10 +247,11 @@ public class GameManager : MonoBehaviour
     }
     
 
-    //타워, 공격자 업그레이드, 버프 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    //타워, 공격자 업그레이드, 버프 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     //AD 딜러 관련
-    public void Up_ArrowDMG(){
-        ArrowDamage+=1.0;
+    public void Up_ArrowDMG(){       
+        ArrowDamage+=1.0;      
+        
     }
     public void Up_ArrowAS(){
         ArrowAS-=0.1;
@@ -271,10 +278,10 @@ public class GameManager : MonoBehaviour
     
 
     //탱커 관련
-    private void Up_TankHealth(){
+    public void Up_TankHealth(){
         TankHealth+=15;
     }
-    private void Up_TankDEF(){
+    public void Up_TankDEF(){
         TankDEF+=1;
     }
 
