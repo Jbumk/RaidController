@@ -46,8 +46,7 @@ public class WalkerPool : MonoBehaviour
 
     }
 
-    public void ReturnMon(MonWalker Mon){
-        Debug.Log("몬스터를 반환");
+    public void ReturnMon(MonWalker Mon){       
         Mon.transform.position =Vector3.zero;
         Mon.transform.SetParent(instance.transform);
         Mon.gameObject.SetActive(false);

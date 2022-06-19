@@ -15,9 +15,14 @@ public class SpriteManager : MonoBehaviour
 
    private static SpriteManager m_inst;
 
-   public Material[] mats; 
+   public Material[] Mats; 
+   public Material[] BossMats;
 
    public Material getSprite(int type){
-        return mats[type];
+        return Mats[type];
+   }
+
+   public Material getBossSprite(int type){
+        return BossMats[type];
    }
 }

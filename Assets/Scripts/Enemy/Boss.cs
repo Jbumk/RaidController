@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+
+    public GameObject Sprite;
+    private Renderer MonColor;
+
     private GameObject Target;
     private GameObject ArrivalPoint=null;
 
     private float AttackTimer=0;
     private double AttackSec=5.0;
+    private Quaternion BossQuat;
 
 
     //스펙
     private double Health = 2000;
     private float MoveSpeed = 1f;
     private int Defense = 10;
+
+    private void Awake() {
+        MonColor = Sprite.GetComponent<Renderer>();
+    }
 
     private void FixedUpdate() {
         if(Health>0){
@@ -62,6 +71,10 @@ public class Boss : MonoBehaviour
                 }
 
             }
+            BossQuat = this.transform.rotation; 
+            BossQuat.x=0;
+            BossQuat.z=0;
+            this.transform.rotation=BossQuat;
            
 
         }else{
@@ -73,7 +86,7 @@ public class Boss : MonoBehaviour
 
     //설정
 
-    public void SetSpec(double Health, float MoveSpeed, int Defende){
+    public void SetSpec(double Health, float MoveSpeed, int Defende,int type){
         this.Health= Health;
         this.MoveSpeed = MoveSpeed;
         this.Defense = Defense;
